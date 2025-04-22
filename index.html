@@ -90,9 +90,13 @@ SegmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
       alert('Hello! This is an alert.');
     }
     SegmentAnalytics.track({
-      event: "Button Clicked Alert"
+      "event": "Button Clicked Alert"
     }); 
-
+    analytics.track({
+      "userId": "123",
+      "event": "Button Clicked Alert"
+    });
+      
     function changeText() {
       document.getElementById('message').textContent = 'The text has changed!';
     }
