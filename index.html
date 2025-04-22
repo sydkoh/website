@@ -85,17 +85,21 @@ SegmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
 
 
   <script>
-    SegmentAnalytics.track({
-      event: "Button Clicked"
-    }); 
+    
     function showAlert() {
       alert('Hello! This is an alert.');
     }
+    SegmentAnalytics.track({
+      event: "Button Clicked Alert"
+    }); 
 
     function changeText() {
       document.getElementById('message').textContent = 'The text has changed!';
     }
 
+      SegmentAnalytics.track({
+      event: "Button Clicked Text"
+    }); 
     function toggleBackground() {
       const body = document.body;
       body.style.backgroundColor = body.style.backgroundColor === 'lightblue' ? 'white' : 'lightblue';
