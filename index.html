@@ -98,13 +98,15 @@ SegmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
       document.getElementById('message').textContent = 'The text has changed!';
     }
 
-      SegmentAnalytics.track({
-      event: "Click Color Change Button"
-    }); 
+    
     function toggleBackground() {
       const body = document.body;
       body.style.backgroundColor = body.style.backgroundColor === 'lightblue' ? 'white' : 'lightblue';
     }
+
+    analytics.track("Click Color Change Button", {
+  Color: "Blue"
+});
   </script>
 
 </body>
