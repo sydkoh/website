@@ -91,20 +91,15 @@ SegmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
     function showAlert() {
       alert('Hello! This is an alert.');
     }
-    SegmentAnalytics.track({
-      "event": "Button Clicked Alert"
-    }); 
-    analytics.track({
-      "userId": "123",
-      "event": "Button Clicked Alert"
-    });
+  
+
       
     function changeText() {
       document.getElementById('message').textContent = 'The text has changed!';
     }
 
       SegmentAnalytics.track({
-      event: "Button Clicked Text"
+      event: "Click Color Change Button"
     }); 
     function toggleBackground() {
       const body = document.body;
