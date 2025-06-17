@@ -3,11 +3,6 @@
 
 <head> 
   
-<script>
- //where SR Segment middleware used to be
-  
-</script> 
-  
   <meta charset="UTF-8">
   <title>Test Website with Buttons</title>
   <style>
@@ -43,7 +38,7 @@
   analytics.page();
   }}();
 </script>
-  <script>
+   <script type="module">
 import * as sessionReplay from "@amplitude/session-replay-browser";
 import { AnalyticsBrowser } from "@segment/analytics-next";
   const segmentAnalytics = AnalyticsBrowser.load({
@@ -87,37 +82,32 @@ SegmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
 
   next(payload);
 });
-
+   </script>
+<script>
     
     function showAlert() {
       alert('Hello! This is an alert.');
+      analytics.track("Click Alert Button", {
+        Alert: "True"
+      });
     }
-  
- analytics.track("Click Alert Button", {
-  Alert: "True"
-});
       
     function changeText() {
       document.getElementById('message').textContent = 'The text has changed!';
+      analytics.track("Click Text Change Button", {
+        TextChanged: "True"
+      });
     }
-
-     analytics.track("Click Text Change Button", {
-  TextChaged: "True"
-});
     
     function toggleBackground() {
       const body = document.body;
       body.style.backgroundColor = body.style.backgroundColor === 'lightblue' ? 'white' : 'lightblue';
+      analytics.track("Click Color Change Button", {
+        Color: "Blue"
+      });
     }
     
-
-    analytics.track("Click Color Change Button", {
-  Color: "Blue"
-});
   </script>
 
 </body>
-</html>
-
-
-
+</html> 
