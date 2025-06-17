@@ -82,12 +82,16 @@ SegmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
 
   next(payload);
 });
-
-
-         function showAlert() {
+      
+   </script>
+<script>
+    
+function showAlert() {
       alert('Hello! This is an alert.');
       analytics.track("Click Alert Button", {
         Alert: "True"
+        const sessionReplayProperties = sessionReplay.getSessionReplayProperties();
+
       });
     }
       
@@ -106,10 +110,6 @@ SegmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
       });
     }
     
-   </script>
-<script>
-    
-//where functions were before
   </script>
 
 </body>
