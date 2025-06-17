@@ -93,12 +93,17 @@ SegmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
       alert('Hello! This is an alert.');
     }
   
-
+ analytics.track("Click Alert Button", {
+  Alert: "True"
+});
       
     function changeText() {
       document.getElementById('message').textContent = 'The text has changed!';
     }
 
+     analytics.track("Click Text Change Button", {
+  TextChaged: "True"
+});
     
     function toggleBackground() {
       const body = document.body;
