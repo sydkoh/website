@@ -57,7 +57,8 @@ await sessionReplay.init(AMPLITUDE_API_KEY, {
   sessionId: storedSessionId,
   deviceId: user.anonymousId()
 }).promise;
-
+   </script>
+  <script>
 // Add middleware to check if the session id has changed,
 // and update the session replay instance
 segmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
@@ -104,7 +105,7 @@ function showAlert() {
     
     function toggleBackground() {
       const body = document.body;
-      body.style.backgroundColor = body.style.backgroundColor === 'lightblue' ? 'white' : 'lightblue';
+      body.style.backgroundColor = body.style.backgroundColor === 'lightblue' ? 'white': 'lightblue';
       analytics.track("Click Color Change Button", {
         Color: "Blue"
       });
