@@ -82,10 +82,9 @@ SegmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
 
   next(payload);
 });
-   </script>
-<script>
-    
-    function showAlert() {
+
+
+         function showAlert() {
       alert('Hello! This is an alert.');
       analytics.track("Click Alert Button", {
         Alert: "True"
@@ -107,6 +106,10 @@ SegmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
       });
     }
     
+   </script>
+<script>
+    
+//where functions were before
   </script>
 
 </body>
