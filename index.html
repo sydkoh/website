@@ -57,7 +57,7 @@ await sessionReplay.init(AMPLITUDE_API_KEY, {
   sessionId: storedSessionId,
   deviceId: user.anonymousId()
 }).promise;
-  
+function sessionReplay() {
 // Add middleware to check if the session id has changed,
 // and update the session replay instance
 segmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
@@ -82,7 +82,8 @@ SegmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
 
   next(payload);
 });
-      
+
+}
    </script>
 <script>
     
@@ -91,6 +92,8 @@ function showAlert() {
       analytics.track("Click Alert Button", {
         Alert: "True"
       });
+  sessionReplay();
+  
     }
       
     function changeText() {
