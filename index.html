@@ -63,7 +63,7 @@ createSegmentActionsPlugin({
     
 function showAlert() {
       alert('Hello! This is an alert.');
-      analytics.track("Click Alert Button", {
+      segmentAnalytics.track("Click Alert Button", {
         Alert: "True"
       });
   
@@ -71,7 +71,7 @@ function showAlert() {
       
     function changeText() {
       document.getElementById('message').textContent = 'The text has changed!';
-      analytics.track("Click Text Change Button", {
+      segmentAnalytics.track("Click Text Change Button", {
         TextChanged: "True"
       });
     }
@@ -79,7 +79,7 @@ function showAlert() {
     function toggleBackground() {
       const body = document.body;
       body.style.backgroundColor = body.style.backgroundColor === 'lightblue' ? 'white': 'lightblue';
-      analytics.track("Click Color Change Button", {
+      segmentAnalytics.track("Click Color Change Button", {
         Color: "Blue"
       });
     }
