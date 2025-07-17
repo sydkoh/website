@@ -2,56 +2,30 @@
 <html lang="en">
 
 <head> 
-    <script>
-     !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="UVqfHfyBFqyDtaP1FB8SmXqjNuWdU2Go";;analytics.SNIPPET_VERSION="5.2.0";
-  analytics.load("UVqfHfyBFqyDtaP1FB8SmXqjNuWdU2Go");
-  analytics.page();
-  }}();
-</script>
+  
    <script>
 import * as sessionReplay from "@amplitude/session-replay-browser";
 import { AnalyticsBrowser } from "@segment/analytics-next";
+
+import { createSegmentActionsPlugin } from '@amplitude/segment-session-replay-plugin';
+
   const segmentAnalytics = AnalyticsBrowser.load({
-  writeKey: "segment-key",
+  writeKey: "UVqfHfyBFqyDtaP1FB8SmXqjNuWdU2Go",
 });
 
-const AMPLITUDE_API_KEY = cfc2a8a2f65d2e454701767d536bb130 // must match that saved with Segment
-const getStoredSessionId = () => {
- return cookie.get("amp_session_id") || 0;
-}
+const AMPLITUDE_API_KEY = "cfc2a8a2f65d2e454701767d536bb130" // must match that saved with Segment
 
-const user = await segmentAnalytics.user();
-const storedSessionId = getStoredSessionId();
-
-await sessionReplay.init(AMPLITUDE_API_KEY, {
-  sessionId: storedSessionId,
-  deviceId: user.anonymousId()
-}).promise;
-
-// Add middleware to check if the session id has changed,
-// and update the session replay instance
-segmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
-  const storedSessionId = getStoredSessionId();
-  const nextSessionId = payload.obj.integrations['Actions Amplitude'].session_id || 0
-  if (storedSessionId < nextSessionId) {
-    cookie.set("amp_session_id", nextSessionId);
-    sessionReplay.setSessionId(nextSessionId);
-  }
-  next(payload);
+createSegmentActionsPlugin({
+    segmentInstance: SegmentAnalytics,
+    amplitudeApiKey: AMPLITUDE_API_KEY,
+    sessionReplayOptions: {
+        logLevel: 4,
+        sampleRate: 1,
+        debugMode: true,
+    },
+    enableWrapperDebug: true,
 });
-
-// Add middleware to always add session replay properties to track calls
-SegmentAnalytics.addSourceMiddleware(({ payload, next, integrations }) => {
-  const sessionReplayProperties = sessionReplay.getSessionReplayProperties();
-  if (payload.type() === "track") {
-    payload.obj.properties = {
-      ...payload.obj.properties,
-      ...sessionReplayProperties,
-    };
-  }
-
-  next(payload);
-});
+       
 
    </script>
   
