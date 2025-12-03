@@ -1,60 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head> 
-  
-   <script>
-/*import * as sessionReplay from "@amplitude/session-replay-browser";
-import { AnalyticsBrowser } from "@segment/analytics-next";
-
-import { createSegmentActionsPlugin } from '@amplitude/segment-session-replay-plugin';
-
-  const segmentAnalytics = AnalyticsBrowser.load({
-  writeKey: "UVqfHfyBFqyDtaP1FB8SmXqjNuWdU2Go",
-});
-
-const AMPLITUDE_API_KEY = "cfc2a8a2f65d2e454701767d536bb130" // must match that saved with Segment
-
-createSegmentActionsPlugin({
-    segmentInstance: segmentAnalytics,
-    amplitudeApiKey: AMPLITUDE_API_KEY,
-    sessionReplayOptions: {
-        logLevel: 4,
-        sampleRate: 1,
-        debugMode: true,
-    },
-    enableWrapperDebug: true,
-});
-
-    
-     <script src="https://cdn.amplitude.com/script/AMPLITUDE_API_KEY.js">
-<script>
-   <script src="https://cdn.amplitude.com/script/cfc2a8a2f65d2e454701767d536bb130.engagement.js">*/ 
-   
-     import * as amplitude from '@amplitude/analytics-browser';
-import { sessionReplayPlugin } from '@amplitude/plugin-session-replay-browser';
- 
- // Create and Install Session Replay Plugin
-const sessionReplayTracking = sessionReplayPlugin();
-amplitude.add(sessionReplayTracking);
-
-
-     <script src="https://cdn.amplitude.com/script/cfc2a8a2f65d2e454701767d536bb130.js"></script>
-<script>
-  window.amplitude.init('cfc2a8a2f65d2e454701767d536bb130', {
-    fetchRemoteConfig: true,
-    autocapture: true
-  });
-</script>
-   
-   </script>
-<script>amplitude.add(window.engagement.plugin())</script>
-
-
-   </script>
-  
+<head>
   <meta charset="UTF-8">
   <title>Test Website with Buttons</title>
+
+  <!-- 1. Load Amplitude SDK from CDN -->
+  <script src="https://cdn.amplitude.com/script/cfc2a8a2f65d2e454701767d536bb130.js"></script>
+
+  <!-- 2. Initialize Amplitude -->
+  <script>
+    window.amplitude.init('cfc2a8a2f65d2e454701767d536bb130', null, {
+      fetchRemoteConfig: true,
+      autocapture: true
+    });
+  </script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -68,47 +28,39 @@ amplitude.add(sessionReplayTracking);
       cursor: pointer;
     }
   </style>
-
 </head>
 
 <body>
-
   <h1>Welcome to My Test Site</h1>
-
   <p id="message">Click a button to see what happens!</p>
 
   <button onclick="showAlert()">Show Alert</button>
   <button onclick="changeText()">Change Text</button>
   <button onclick="toggleBackground()">Toggle Background Color</button>
 
-
-
-<script>
-    
-function showAlert() {
+  <script>
+    function showAlert() {
       alert('Hello! This is an alert.');
-      amplitude.track("Click Alert Button", {
+      amplitude.getInstance().logEvent("Click Alert Button", {
         Alert: "True"
       });
-  
     }
-      
+
     function changeText() {
       document.getElementById('message').textContent = 'The text has changed!';
-      amplitude.track("Click Text Change Button", {
+      amplitude.getInstance().logEvent("Click Text Change Button", {
         TextChanged: "True"
       });
     }
-    
+
     function toggleBackground() {
       const body = document.body;
-      body.style.backgroundColor = body.style.backgroundColor === 'lightblue' ? 'white': 'lightblue';
-      amplitude.track("Click Color Change Button", {
+      body.style.backgroundColor = body.style.backgroundColor === 'lightblue' ? 'white' : 'lightblue';
+      amplitude.getInstance().logEvent("Click Color Change Button", {
         Color: "Blue"
       });
     }
-    
   </script>
-
 </body>
-</html> 
+</html>
+
