@@ -26,9 +26,19 @@ createSegmentActionsPlugin({
     enableWrapperDebug: true,
 });
 
-     <script src="https://cdn.amplitude.com/script/cfc2a8a2f65d2e454701767d536bb130.engagement.js">*/ 
+    
      <script src="https://cdn.amplitude.com/script/AMPLITUDE_API_KEY.js"></script>
 <script>
+   <script src="https://cdn.amplitude.com/script/cfc2a8a2f65d2e454701767d536bb130.engagement.js">*/ 
+     import * as amplitude from '@amplitude/analytics-browser';
+import { sessionReplayPlugin } from '@amplitude/plugin-session-replay-browser';
+ 
+ // Create and Install Session Replay Plugin
+const sessionReplayTracking = sessionReplayPlugin();
+amplitude.add(sessionReplayTracking);
+
+// Your existing initialization logic with Browser SDK
+amplitude.init(API_KEY);
   window.amplitude.init('cfc2a8a2f65d2e454701767d536bb130', {
     fetchRemoteConfig: true,
     autocapture: true
